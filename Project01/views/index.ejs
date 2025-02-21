@@ -13,28 +13,31 @@
 
 <body class="bg-gray-900 text-white flex flex-col items-center p-6">
     <h1>Home Page</h1>
-    <p>Welcome to the home page</p>
 
     <div class="w-full max-w-2xl">
-        <input type="text" placeholder="Title goes here.." class="w-full p-3 mb-2 bg-gray-800 text-white rounded">
-        <textarea placeholder="Write your task details here..."
-            class="w-full p-3 mb-2 bg-gray-800 text-white rounded"></textarea>
-        <button class="bg-blue-500 px-6 py-2 text-white rounded hover:bg-blue-600">Create Task</button>
+        <form action="/create" method="post">
+            <input type="text" placeholder="Title goes here.." class="w-full p-3 mb-2 bg-gray-800 text-white rounded"
+                name="title">
+            <textarea placeholder="Write your task details here..."
+                class="w-full p-3 mb-2 bg-gray-800 text-white rounded" name="details"></textarea>
+            <button class="bg-blue-500 px-6 py-2 text-white rounded hover:bg-blue-600" >Create Task</button>
+        </form>
+    </div>
     </div>
 
     <div class="flex gap-4 mt-6">
-        <% if(files.length > 0) { %>
+        <% if(files.length> 0) { %>
             <% files.forEach(function(val) { %>
                 <div class="bg-gray-800 p-4 rounded w-64 text-center">
                     <h2 class="text-lg font-bold">
-                        hello
+                        <%= val %>
                     </h2>
-                    <a href="#" class="text-blue-400">Read More.</a>
+                    <a href="/files/<%= val %>" class="text-blue-400">Read More.</a>
                 </div>
                 <% }) %>
-        <% } else { %>
-            <h2 class="text-lg font-bold">No tasks yet..</h2>
-        <% } %>
+                    <% } else { %>
+                        <h2 class="text-lg font-bold">No tasks yet..</h2>
+                        <% } %>
     </div>
     <script src="/javascripts/script.js"></script>
 </body>
